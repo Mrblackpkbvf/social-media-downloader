@@ -77,6 +77,9 @@ class UniversalDownloader:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 info = ydl.extract_info(url, download=True)
                 
+                if not info:
+                    return {'status': 'error', 'message': 'Could not extract video information. The video might be private, unavailable, or unsupported.'}
+                
                 if 'entries' in info:  # Playlist
                     titles = [entry.get('title', 'Unknown') for entry in info['entries'] if entry]
                     return {
@@ -173,6 +176,10 @@ class UniversalDownloader:
             
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 info = ydl.extract_info(url, download=True)
+                
+                if not info:
+                    return {'status': 'error', 'message': 'Could not extract TikTok video information.'}
+                    
                 return {
                     'status': 'success',
                     'message': 'TikTok video downloaded successfully!',
@@ -193,6 +200,10 @@ class UniversalDownloader:
             
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 info = ydl.extract_info(url, download=True)
+                
+                if not info:
+                    return {'status': 'error', 'message': 'Could not extract Twitter content information.'}
+                    
                 return {
                     'status': 'success',
                     'message': 'Twitter content downloaded successfully!',
@@ -213,6 +224,10 @@ class UniversalDownloader:
             
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 info = ydl.extract_info(url, download=True)
+                
+                if not info:
+                    return {'status': 'error', 'message': 'Could not extract Facebook content information.'}
+                    
                 return {
                     'status': 'success',
                     'message': 'Facebook content downloaded successfully!',
@@ -231,6 +246,10 @@ class UniversalDownloader:
             
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 info = ydl.extract_info(url, download=True)
+                
+                if not info:
+                    return {'status': 'error', 'message': 'Could not extract Reddit content information.'}
+                    
                 return {
                     'status': 'success',
                     'message': 'Reddit content downloaded successfully!',
@@ -250,6 +269,10 @@ class UniversalDownloader:
             
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 info = ydl.extract_info(url, download=True)
+                
+                if not info:
+                    return {'status': 'error', 'message': 'Could not extract media information.'}
+                    
                 return {
                     'status': 'success',
                     'message': 'Content downloaded successfully!',
